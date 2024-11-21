@@ -189,17 +189,21 @@ def main():
     base_trace, neural_network, Phi, approx = pretraining(X_train, y_train, id_config)
     #plt.hist(Phi, bins=20)
     #plt.savefig(os.path.join('plots', 'Phi_distribution.png'))
-    
+    print('Phi 95th quantile: {:.4f}'.format(np.quantile(Phi, 0.95)))
     test_runs = 10
     # in-distribution test
     print('Running in-distribution D-PDDM test {} times'.format(test_runs))
     id_flag_list, id_dis_rates = dpddm_test(base_trace, neural_network, Phi, approx, id_config, runs=test_runs)
     print('In-distribution detection rate: {:.3f}'.format(sum(id_flag_list)/len(id_flag_list)))
-    
+    print('In-distribution disagreement rates:')
+    print(id_dis_rates)
     # out-of-distribution test
     print('Running out-of-distribution D-PDDM test {} times'.format(test_runs))
     ood_flag_list, ood_dis_rates = dpddm_test(base_trace, neural_network, Phi, approx, ood_config, runs=test_runs)
     print('Out-of-distribution detection rate: {:.3f}'.format(sum(ood_flag_list)/len(ood_flag_list)))
+    print('Out-of-distribution disagreement rates:')
+    print(ood_dis_rates)
+
     
 if __name__ == '__main__':
     main()
