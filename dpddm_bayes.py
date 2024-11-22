@@ -101,7 +101,7 @@ ood_config = {
 def pretraining(X_train, 
                 y_train, 
                 id_config,
-                n_iterations=50000, 
+                n_iterations=30000, 
                 plot=True, 
                 base_trace_draws=5000,
                 Phi_size=500,
