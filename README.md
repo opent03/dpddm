@@ -8,3 +8,4 @@ To run the Bayesian neural network implementation:
 
 ``python dpddm_bayes.py``
 
+Details are in the revised version of the supplementary section.
